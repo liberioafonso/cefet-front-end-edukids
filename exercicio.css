@@ -1,11 +1,15 @@
 /* Exercício 1: Criar uma transição para quando o mouse estiver em cima dos
  * botões play/stop (para que o elemento se revele lentamente)
  */
- #controles ul {
+#controles ul {
+  -webkit-transition-timing-function: ease-in-out; /* chrome, safari, android */
+  -moz-transition-timing-function: ease-in-out; /* firefox */
+  -ms-transition-timing-function: ease-in-out; /* internet explorer */
+  -o-transition-timing-function: ease-in-out; /* opera */
+  transition: 600ms ease-in-out;
+}
 
- }
-
-/*
+ /*
  * Exercício 2: Você deve implementar uma metáfora visual para cada um dos 4
  * estados dos animais. Algumas *sugestões*:
  *   - com-fome: animal piscando (opacidade variando)
@@ -14,17 +18,47 @@
  *   - atacando: animal dá um salto e cresce, com uma borda vermelha
  */
 .com-fome {
-
+  animation: esfomeado .5s ease-in-out 0s infinite alternate;
 }
 
 .satisfeito {
-
+  animation: barriga-cheia .5s ease-in-out 0s;
 }
 
 .com-raiva {
-
+  animation: raivoso .5s ease-in-out 0s infinite alternate;
 }
 
 .atacando {
-  
+  animation: ataca .5s ease-in-out 0s infinite;
+}
+
+@keyframes esfomeado {
+  from { opacity: 1.0; }
+  to   { opacity: 0.3; }
+}
+
+@keyframes barriga-cheia {
+  from { transform: rotate(0deg); background: #B3F6B1; }
+  to   { transform: rotate(360deg); background: #046801;}
+}
+
+@keyframes raivoso {
+  from { transform: scale(1.25); background: #F5BABA; }
+  to   { transform: scale(1); background: #FF0000; }
+}
+
+@keyframes ataca {
+  from {transform: scale(0); background: #F5BABA; }
+  to {transform: scale(1); background: #FF0000; }
+}
+
+.comecar, .parar {
+  width: 24px;
+  height: 24px;
+  background-image: url('imgs/icone-comecar-parar.png');
+}
+
+.parar {
+  background-position: 0 24px;
 }
